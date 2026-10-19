@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrega 3 · Panorámicas 360º con A-Frame</title>
+  <style>
+    :root { --bg:#f4f5f9; --fg:#1b1d2a; --card:#fff; --accent:#5b4bdb; --muted:#5d6076; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#12131c; --fg:#ecedf5; --card:#1c1e2b; --accent:#9d92ff; --muted:#a0a3bb; }
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+           background:var(--bg); color:var(--fg); line-height:1.5; }
+    header, main, footer { max-width: 1200px; margin: 0 auto; padding: 1.2rem; }
+    h1 { margin:.2rem 0; font-size: clamp(1.5rem, 4vw, 2.2rem); }
+    p.lead { color:var(--muted); margin-top:0; }
+    .grid { display:grid; gap:1.2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); }
+    .card { background:var(--card); border-radius:14px; padding:1rem; box-shadow:0 2px 12px rgba(0,0,0,.12); }
+    .card h2 { margin:.2rem 0 .1rem; font-size:1.25rem; }
+    .card code { background:rgba(127,127,127,.18); padding:.1rem .35rem; border-radius:5px; }
+    iframe { width:100%; aspect-ratio: 16/10; border:0; border-radius:10px; background:#000; margin-top:.6rem; }
+    a.btn { display:inline-block; margin-top:.6rem; color:var(--accent); font-weight:600; }
+    footer { color:var(--muted); font-size:.9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Panorámicas 360º con A-Frame</h1>
+    <p class="lead">Dos escenas de realidad virtual: una con imagen fija (<code>a-sky</code>) y otra con vídeo (<code>a-videosphere</code>).
+       Arrastra con el ratón, mueve el móvil o usa el botón de gafas VR para entrar en modo inmersivo.</p>
+  </header>
+  <main class="grid">
+    <section class="card">
+      <h2>Escena 1 · Planeta lejano</h2>
+      <p>Fondo basado en imagen fija con <code>&lt;a-sky&gt;</code>.</p>
+      <iframe src="sky.html" title="Escena a-sky" allow="xr-spatial-tracking; accelerometer; gyroscope; fullscreen" allowfullscreen loading="lazy"></iframe>
+      <a class="btn" href="sky.html">Abrir a pantalla completa →</a>
+    </section>
+    <section class="card">
+      <h2>Escena 2 · Aurora boreal</h2>
+      <p>Fondo basado en vídeo con <code>&lt;a-videosphere&gt;</code>.</p>
+      <iframe src="videosphere.html" title="Escena a-videosphere" allow="xr-spatial-tracking; accelerometer; gyroscope; fullscreen; autoplay" allowfullscreen loading="lazy"></iframe>
+      <a class="btn" href="videosphere.html">Abrir a pantalla completa →</a>
+    </section>
+  </main>
+  <footer>
+    Recursos propios generados por código (ver <a href="RECURSOS.md">RECURSOS.md</a>) · Framework: <a href="https://aframe.io">A-Frame 1.5.0</a> (licencia MIT).
+  </footer>
+</body>
+</html>

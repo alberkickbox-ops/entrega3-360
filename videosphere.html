@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Escena 2 · a-videosphere · Aurora boreal</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script>
+    // Componente propio: pausa / reproduce el vídeo al hacer clic (o mirar el botón con el cursor)
+    AFRAME.registerComponent('toggle-video', {
+      schema: { target: { type: 'selector' } },
+      init: function () {
+        var el = this.el, video = this.data.target;
+        el.addEventListener('click', function () {
+          if (video.paused) { video.play(); el.setAttribute('text', 'value', 'PAUSA'); }
+          else { video.pause(); el.setAttribute('text', 'value', 'PLAY'); }
+        });
+      }
+    });
+    // Los navegadores móviles a veces exigen un gesto del usuario para arrancar el vídeo
+    window.addEventListener('DOMContentLoaded', function () {
+      var v = document.getElementById('aurora');
+      var start = function () { v.play(); window.removeEventListener('touchstart', start); window.removeEventListener('click', start); };
+      window.addEventListener('touchstart', start); window.addEventListener('click', start);
+    });
+  </script>
+</head>
+<body>
+  <a-scene vr-mode-ui="enabled: true">
+    <a-assets>
+      <!-- Vídeo equirrectangular 2048x1024, 10 s en bucle, mp4/H.264 sin audio (obra propia) -->
+      <video id="aurora" src="assets/aurora.mp4" autoplay loop muted playsinline
+             crossorigin="anonymous" preload="auto"></video>
+    </a-assets>
+
+    <!-- Fondo 360º basado en vídeo -->
+    <a-videosphere src="#aurora" rotation="0 -90 0"></a-videosphere>
+
+    <a-text value="AURORA BOREAL" position="0 2.6 -4" align="center" width="9" color="#9bffd0"></a-text>
+    <a-text value="Vídeo 360º en bucle · gira la cabeza o arrastra con el ratón"
+            position="0 2.1 -4" align="center" width="5" color="#c9e8ff"></a-text>
+
+    <!-- Botón play/pausa -->
+    <a-plane position="0 0.6 -2.5" width="0.9" height="0.35" color="#12333a" opacity="0.85"
+             text="value: PAUSA; align: center; width: 2.2; color: #9bffd0"
+             toggle-video="target: #aurora"></a-plane>
+
+    <a-entity camera look-controls position="0 1.6 0">
+      <a-entity cursor="fuse: true; fuseTimeout: 1200"
+                position="0 0 -1" geometry="primitive: ring; radiusInner: 0.012; radiusOuter: 0.02"
+                material="color: white; shader: flat"></a-entity>
+    </a-entity>
+  </a-scene>
+</body>
+</html>
