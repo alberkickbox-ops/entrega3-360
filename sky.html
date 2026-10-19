@@ -17,7 +17,7 @@
   </script>
 </head>
 <body>
-  <a-scene vr-mode-ui="enabled: true">
+  <a-scene vr-mode-ui="enabled: true" cursor="rayOrigin: mouse" raycaster="objects: .clickable">
     <a-assets>
       <!-- Panorámica equirrectangular 4096x2048 (obra propia, ver RECURSOS.md) -->
       <img id="panorama" src="assets/planeta-lejano.jpg" crossorigin="anonymous">
@@ -32,11 +32,11 @@
             position="0 2.1 -4" align="center" width="5" color="#b8c7ff"></a-text>
 
     <!-- Objetos flotantes con animación y reacción a la mirada -->
-    <a-octahedron position="-2.5 1.4 -3.5" radius="0.45" color="#7ad7f0" brilla-al-mirar
+    <a-octahedron class="clickable" position="-2.5 1.4 -3.5" radius="0.45" color="#7ad7f0" brilla-al-mirar
                   animation="property: rotation; to: 0 360 0; dur: 9000; loop: true; easing: linear"></a-octahedron>
-    <a-torus-knot position="2.5 1.4 -3.5" radius="0.3" radius-tubular="0.07" color="#ff8fab" brilla-al-mirar
+    <a-torus-knot class="clickable" position="2.5 1.4 -3.5" radius="0.3" radius-tubular="0.07" color="#ff8fab" brilla-al-mirar
                   animation="property: rotation; to: 360 360 0; dur: 12000; loop: true; easing: linear"></a-torus-knot>
-    <a-sphere position="0 0.7 -3" radius="0.25" color="#c3f584" brilla-al-mirar
+    <a-sphere class="clickable" position="0 0.7 -3" radius="0.25" color="#c3f584" brilla-al-mirar
               animation="property: position; to: 0 1.1 -3; dir: alternate; dur: 2200; loop: true; easing: easeInOutSine"></a-sphere>
 
     <!-- Cámara con cursor de mirada (fuse) para móvil y visores VR -->
